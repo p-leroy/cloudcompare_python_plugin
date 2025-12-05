@@ -32,5 +32,5 @@ def main() -> None:
     main_window = MainWindow()
     loop = QEventLoop()
     main_window.show()
-    main_window.event_loop = loop
+    main_window.set_event_loop(loop)
     loop.exec()

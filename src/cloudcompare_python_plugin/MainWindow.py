@@ -1,4 +1,6 @@
 from PySide6.QtWidgets import QMainWindow
+from PySide6.QtCore import QEventLoop
+from PySide6.QtGui import QCloseEvent
 
 from .main_window_ui import Ui_MainWindow
 from . import __about__
@@ -53,3 +55,32 @@ class MainWindow(QMainWindow):
         else:
             self.inc = 1
         self.ui.plainTextEdit.appendPlainText(f"increment set to {self.inc}")
+
+    def set_event_loop(self, loop: QEventLoop) -> None:
+        """Set an optional event loop.
+
+        In some context (e.g. CloudCompare and QGIS plugin),
+        we need to set a dedicated event loop to the mainwindow.
+
+        Parameters
+        ----------
+        loop : QEventLoop
+            The event loop to set
+
+        """
+        self.event_loop = loop
+
+    def closeEvent(self, a0: QCloseEvent) -> None:
+        """Close the application.
+
+        The event loop is exited if it was previously set.
+
+        Parameters
+        ----------
+        a0 : QCloseEvent
+            The close event
+
+        """
+        super().closeEvent(a0)
+        if self.event_loop is not None:
+            self.event_loop.quit()
