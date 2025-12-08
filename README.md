@@ -37,7 +37,7 @@ This is a very simple GUI with basic controls:
 - Check the box to change the increment (unchecked => 1 / checked => 2).
 - Click on the radio buttons to show a text in the editor.
 
-Convert ui and qrc files with the `uic_rcc.py` script (use uic.exe and rcc.exe provided by PySide6 or use the existing ones.
+Convert ui and qrc files with the `uic_rcc.py` script (uses uic.exe and rcc.exe as provided with PySide6).
 
 ## License
 
